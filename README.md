@@ -1,2 +1,1680 @@
-# -2
-沖繩黑三寶
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0d4f6e">
+  <title>沖繩 4 天 3 夜・無壓力行程手冊</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ocean: #1a6b8a;
+      --ocean-light: #e8f4f8;
+      --sand: #f5ede0;
+      --sand-dark: #d4a96a;
+      --coral: #e06b50;
+      --coral-light: #fdf0ec;
+      --green: #3a7d5c;
+      --green-light: #eaf3ec;
+      --text: #2a2a2a;
+      --text-muted: #6b6b6b;
+      --border: #e8e0d5;
+      --white: #fefefe;
+      --nav-h: 60px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #f7f3ee;
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.75;
+      padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 16px)
+    }
+
+    /* PROGRESS */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, #2a9dbf, var(--sand-dark));
+      width: 0%; z-index: 200; transition: width .1s linear; border-radius: 0 2px 2px 0
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(160deg, #0d4f6e 0%, #1a7aa0 50%, #2a9dbf 100%);
+      padding: clamp(40px, 8vw, 64px) clamp(20px, 5vw, 40px) clamp(36px, 6vw, 48px);
+      text-align: center; position: relative; overflow: hidden
+    }
+    .hero::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
+      background: #f7f3ee; clip-path: ellipse(60% 100% at 50% 100%)
+    }
+    .hero-tag {
+      display: inline-block; background: rgba(255,255,255,.18); color: rgba(255,255,255,.9);
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase; padding: 5px 16px;
+      border-radius: 20px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,.25)
+    }
+    .hero h1 {
+      font-family: 'Noto Serif TC', serif; font-size: clamp(26px, 7vw, 38px); font-weight: 700;
+      color: #fff; line-height: 1.25; margin-bottom: 10px
+    }
+    .hero-sub { color: rgba(255,255,255,.75); font-size: clamp(12px, 3.2vw, 14px); margin-bottom: 28px; padding: 0 8px }
+    .hero-meta { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap }
+    .hero-meta-item {
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 12px; padding: 8px 14px; color: #fff; font-size: 12px;
+      display: flex; align-items: center; gap: 6px
+    }
+    .hero-meta-item span { font-size: 16px }
+
+    /* QUICK LINKS */
+    .quick-links-row { max-width: 780px; margin: 22px auto 0; padding: 0 16px }
+    .qlinks { display: flex; gap: 10px; flex-wrap: wrap }
+    .qlink {
+      display: flex; align-items: center; gap: 7px; padding: 11px 14px; border-radius: 14px;
+      font-size: 13px; font-weight: 600; text-decoration: none; border: 1.5px solid transparent;
+      flex: 1; min-width: 120px; justify-content: center; transition: opacity .15s
+    }
+    .qlink:active { opacity: .75 }
+    .qlink-green { background: #e8f5e9; color: #1b5e20; border-color: #a5d6a7 }
+    .qlink-indigo { background: #e8eaf6; color: #283593; border-color: #9fa8da }
+    .qlink-orange { background: #fff3e0; color: #bf360c; border-color: #ffcc80 }
+    .qlink-teal { background: #e0f2f1; color: #004d40; border-color: #80cbc4; cursor: pointer }
+    .qlink-icon { font-size: 17px }
+
+    /* BOTTOM NAV */
+    #day-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: calc(var(--nav-h) + var(--safe-bottom)); padding-bottom: var(--safe-bottom);
+      background: rgba(255,255,255,.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border); display: flex; align-items: center;
+      justify-content: space-around; z-index: 100; box-shadow: 0 -4px 20px rgba(0,0,0,.08)
+    }
+    .nav-btn {
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 3px; min-height: 44px; padding: 6px 4px; border: none; background: transparent;
+      cursor: pointer; color: var(--text-muted); font-family: 'Noto Sans TC', sans-serif;
+      font-size: 10px; line-height: 1.3; transition: color .2s; text-decoration: none
+    }
+    .nav-btn .nav-icon { font-size: 18px; line-height: 1; transition: transform .2s }
+    .nav-btn.active { color: var(--ocean); font-weight: 500 }
+    .nav-btn.active .nav-icon { transform: scale(1.15) }
+    .nav-btn:active { opacity: .7 }
+
+    /* FLIGHT */
+    .flight-section { max-width: 780px; margin: 24px auto 0; padding: 0 16px }
+    .flight-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
+    @media(max-width:520px) { .flight-cards { grid-template-columns: 1fr } }
+    .flight-card { background: var(--white); border-radius: 16px; border: 1px solid var(--border); overflow: hidden }
+    .flight-header {
+      padding: 9px 14px; display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; font-weight: 500
+    }
+    .flight-header.go { background: #e1f5f0; color: #0a5f45 }
+    .flight-header.back { background: #eeedfe; color: #3c3489 }
+    .flight-body { padding: 12px 14px }
+    .flight-route { display: flex; align-items: center; gap: 8px; margin-bottom: 6px }
+    .flight-time { font-size: clamp(18px, 5vw, 22px); font-weight: 600 }
+    .flight-arrow { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px }
+    .flight-line { width: 100%; height: 1px; background: var(--border); position: relative }
+    .flight-line::after { content: '▶'; position: absolute; right: -4px; top: -8px; font-size: 10px; color: var(--text-muted) }
+    .flight-num { font-size: 11px; color: var(--text-muted) }
+    .flight-detail { font-size: 11.5px; color: var(--text-muted); line-height: 1.5 }
+    .booking-id {
+      display: inline-block; font-family: monospace; font-size: 11px;
+      background: #f5f0ea; padding: 2px 8px; border-radius: 4px; color: var(--text-muted)
+    }
+
+    /* WEATHER */
+    .weather-row { max-width: 780px; margin: 24px auto; padding: 0 16px }
+    .weather-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px }
+    .weather-updated { font-size: 10px; color: var(--text-muted) }
+    .weather-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px }
+    @media(max-width:520px) { .weather-grid { grid-template-columns: repeat(2, 1fr) } }
+    .weather-card {
+      background: var(--white); border: 1.5px solid var(--border); border-radius: 14px;
+      padding: 12px 8px; text-align: center; cursor: pointer;
+      transition: border-color .2s, box-shadow .2s; user-select: none
+    }
+    .weather-card.active { border-color: var(--ocean); box-shadow: 0 0 0 3px rgba(26,107,138,.12) }
+    .weather-card:active { opacity: .85 }
+    .w-date { font-size: 11px; color: var(--text-muted); margin-bottom: 5px }
+    .w-icon { font-size: 26px; margin-bottom: 3px }
+    .w-temp { font-size: 14px; font-weight: 600; color: var(--ocean) }
+    .w-minmax { font-size: 10px; color: var(--text-muted); margin-top: 1px }
+    .w-rain { display: inline-block; font-size: 10px; margin-top: 5px; padding: 2px 7px; border-radius: 8px; font-weight: 500 }
+    .w-rain.low { background: #e8f5e9; color: #2e7d32 }
+    .w-rain.mid { background: #fff8e1; color: #f57f17 }
+    .w-rain.high { background: #fce4ec; color: #c62828 }
+    .w-chevron { font-size: 10px; color: var(--text-muted); margin-top: 4px; display: block; transition: transform .25s }
+    .weather-card.active .w-chevron { transform: rotate(180deg) }
+
+    /* HOURLY */
+    .hourly-panel { display: none; background: var(--white); border: 1px solid var(--border); border-radius: 14px; margin-top: 8px; overflow: hidden }
+    .hourly-panel.open { display: block }
+    .hourly-day-label { font-size: 11px; font-weight: 600; color: var(--ocean); padding: 10px 14px 4px; letter-spacing: .5px }
+    .hourly-scroll { display: flex; overflow-x: auto; padding: 6px 10px 12px; gap: 4px; scrollbar-width: none }
+    .hourly-scroll::-webkit-scrollbar { display: none }
+    .hour-item { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 48px; padding: 6px 5px; border-radius: 10px; flex-shrink: 0 }
+    .hour-item.is-now { background: var(--ocean-light) }
+    .hour-time { font-size: 10px; color: var(--text-muted) }
+    .hour-icon { font-size: 17px }
+    .hour-temp { font-size: 12px; font-weight: 600; color: var(--ocean) }
+    .hour-rain { font-size: 10px; color: #5b94b5 }
+
+    /* SECTION LABEL */
+    .section-label { font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); font-weight: 500; margin-bottom: 12px }
+
+    /* DAY BLOCK */
+    .day-block { max-width: 780px; margin: 0 auto 32px; padding: 0 16px; scroll-margin-top: 16px }
+    .day-title-row {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+      padding-bottom: 12px; border-bottom: 2px solid var(--border); cursor: pointer; user-select: none
+    }
+    .day-num {
+      background: var(--ocean); color: #fff; font-family: 'Noto Serif TC', serif; font-size: 12px;
+      font-weight: 700; width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; text-align: center; line-height: 1.2
+    }
+    .day-heading { flex: 1; min-width: 0 }
+    .day-heading h2 { font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 4.5vw, 20px); font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+    .day-heading .day-date { font-size: 12px; color: var(--text-muted) }
+    .day-weather-inline { font-size: 12px; color: var(--text-muted); text-align: right; line-height: 1.5; flex-shrink: 0 }
+    .day-toggle { font-size: 20px; color: var(--text-muted); transition: transform .3s; flex-shrink: 0; margin-left: 2px }
+    .day-block.collapsed .day-toggle { transform: rotate(-90deg) }
+    .day-content { overflow: hidden; transition: max-height .4s ease, opacity .3s ease; max-height: 9999px; opacity: 1 }
+    .day-block.collapsed .day-content { max-height: 0; opacity: 0 }
+
+    /* ITEM CARD */
+    .item-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 12px; overflow: hidden }
+    .item-card.has-image { display: grid; grid-template-columns: 170px 1fr }
+    @media(max-width:520px) { .item-card.has-image { grid-template-columns: 1fr } }
+    .item-content { padding: 14px 16px }
+    .item-top { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; flex-wrap: wrap }
+    .time-tag { font-family: monospace; font-size: 11.5px; background: var(--sand); color: #7a5c35; padding: 3px 9px; border-radius: 6px; white-space: nowrap; font-weight: 500 }
+    .cat-tag { font-size: 11px; padding: 3px 9px; border-radius: 10px; font-weight: 500; white-space: nowrap }
+    .cat-sight { background: var(--ocean-light); color: #0d4f6e }
+    .cat-food { background: #fff3e0; color: #e65100 }
+    .cat-hotel { background: var(--ocean-light); color: #185fa5 }
+    .cat-rent { background: #f3e5f5; color: #6a1b9a }
+    .item-title { font-family: 'Noto Serif TC', serif; font-size: clamp(15px, 4vw, 17px); font-weight: 700; color: var(--text); margin-bottom: 5px }
+    .item-body { font-size: 13px; color: var(--text-muted); line-height: 1.8 }
+    .item-body strong { color: var(--text); font-weight: 500 }
+    .item-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 9px; font-size: 11.5px; color: var(--text-muted) }
+    .meta-chip { display: flex; align-items: center; gap: 4px }
+    .tip { margin-top: 9px; background: var(--green-light); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; padding: 7px 11px; font-size: 12.5px; color: #2a5c42; line-height: 1.6 }
+    .warn { margin-top: 9px; background: var(--coral-light); border-left: 3px solid var(--coral); border-radius: 0 8px 8px 0; padding: 7px 11px; font-size: 12.5px; color: #8b3526; line-height: 1.6 }
+    .rating { color: var(--sand-dark); font-weight: 500 }
+
+    /* CONNECTOR */
+    .connector { display: flex; align-items: flex-start; gap: 10px; padding: 4px 0 4px 10px; margin-bottom: 8px; font-size: 12px; color: var(--text-muted); line-height: 1.5 }
+    .connector-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); flex-shrink: 0; margin-top: 6px }
+
+    /* MAP THUMBNAIL */
+    .map-wrap { position: relative; width: 170px; flex-shrink: 0; overflow: hidden; background: #b8d8e8; min-height: 148px }
+    @media(max-width:520px) { .map-wrap { width: 100%; height: 190px; min-height: unset } }
+    .map-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a6b8a, #2a9dbf); pointer-events: none }
+    .map-bg-icon { font-size: 40px; opacity: .5 }
+    .gmap-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; display: block }
+    .map-overlay-link { position: absolute; inset: 0; z-index: 10; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; text-decoration: none }
+    .nav-pill { background: var(--ocean); color: #fff; font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px; white-space: nowrap; box-shadow: 0 2px 10px rgba(0,0,0,.4); letter-spacing: .2px }
+
+    /* REMINDER */
+    .reminder-box { max-width: 780px; margin: 0 auto 32px; padding: 0 16px }
+    .reminder-inner { background: var(--ocean); border-radius: 20px; padding: clamp(20px, 5vw, 28px) clamp(16px, 5vw, 32px); color: #fff }
+    .reminder-inner h3 { font-family: 'Noto Serif TC', serif; font-size: clamp(15px, 4.5vw, 18px); margin-bottom: 14px; opacity: .95 }
+    .reminder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+    @media(max-width:480px) { .reminder-grid { grid-template-columns: 1fr } }
+    .reminder-item { background: rgba(255,255,255,.12); border-radius: 12px; padding: 11px 13px; font-size: 12.5px; line-height: 1.65 }
+    .reminder-item strong { display: block; font-size: 11px; opacity: .7; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px }
+
+    /* BACK TO TOP */
+    #back-top {
+      position: fixed; bottom: calc(var(--nav-h) + var(--safe-bottom) + 14px); right: 16px;
+      width: 42px; height: 42px; background: var(--ocean); color: #fff; border: none;
+      border-radius: 50%; font-size: 18px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(26,107,138,.4);
+      opacity: 0; transform: translateY(12px); transition: opacity .25s, transform .25s;
+      z-index: 99; pointer-events: none
+    }
+    #back-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto }
+    #back-top:active { opacity: .75 }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 20px 16px; font-size: 11.5px; color: var(--text-muted); border-top: 1px solid var(--border); max-width: 780px; margin: 0 auto; line-height: 1.7 }
+
+    /* PLACE PHOTO */
+    .place-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity .5s }
+    .place-photo.loaded { opacity: 1 }
+
+    /* QR CODE */
+    .qr-section { max-width: 780px; margin: 22px auto 0; padding: 0 16px }
+    .qr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
+    @media(max-width:480px) { .qr-grid { grid-template-columns: 1fr } }
+    .qr-slot { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 14px; text-align: center }
+    .qr-label { font-size: 12px; font-weight: 600; color: var(--ocean); margin-bottom: 10px; letter-spacing: .3px }
+    .qr-ph { border: 2px dashed var(--border); border-radius: 12px; min-height: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text-muted); font-size: 12px; padding: 10px }
+    .qr-ph-icon { font-size: 22px; opacity: .45 }
+    .qr-ph-hint { font-size: 10px; opacity: .65; margin-top: 1px }
+    .qr-img { width: 130px; height: 130px; object-fit: contain; margin: 0 auto; border-radius: 10px; display: block; cursor: pointer; touch-action: none }
+    /* QR LIGHTBOX */
+    #qr-lightbox { position: fixed; inset: 0; z-index: 900; background: rgba(0,0,0,.88); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 24px }
+    #qr-lightbox.open { display: flex }
+    #qr-lightbox-img { max-width: min(90vw,400px); max-height: 80vh; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,.5) }
+    #qr-lightbox-hint { position: absolute; bottom: 32px; color: rgba(255,255,255,.6); font-size: 12px }
+
+    /* PACKING LIST */
+    .pack-section { max-width: 780px; margin: 22px auto 0; padding: 0 16px }
+    .pack-cats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px }
+    @media(max-width:520px) { .pack-cats { grid-template-columns: 1fr } }
+    .pack-cat { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden }
+    .pack-cat-hdr { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text); user-select: none }
+    .pack-cat-hdr:active { background: #f5f5f5 }
+    .pack-chev { font-size: 12px; color: var(--text-muted); transition: transform .25s; flex-shrink: 0 }
+    .pack-cat.open .pack-chev { transform: rotate(180deg) }
+    .pack-items { display: none; border-top: 1px solid var(--border); padding: 4px 0 10px }
+    .pack-cat.open .pack-items { display: block }
+    .pack-item { display: flex; align-items: center; gap: 10px; padding: 8px 14px; font-size: 13px; cursor: pointer; line-height: 1.4 }
+    .pack-item:active { background: #f8f8f8 }
+    .pack-cb { width: 17px; height: 17px; flex-shrink: 0; accent-color: var(--ocean); cursor: pointer }
+    .pack-item:has(.pack-cb:checked) span { text-decoration: line-through; color: var(--text-muted) }
+    .pack-progress { font-size: 11px; color: var(--text-muted); text-align: right; margin-top: 6px }
+
+    /* ── COLLAPSIBLE SECTION HEADER ── */
+    .collapse-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; user-select: none; margin-bottom: 12px;
+      padding-bottom: 0;
+    }
+    .collapse-hdr-left { display: flex; align-items: center; gap: 8px; }
+    .collapse-hdr .section-label { margin-bottom: 0 !important; }
+    .collapse-chev {
+      font-size: 13px; color: var(--text-muted);
+      transition: transform .3s; flex-shrink: 0;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: #ece6dd; display: flex; align-items: center; justify-content: center;
+    }
+    .collapse-sec.closed .collapse-chev { transform: rotate(-90deg); }
+    .collapse-body {
+      overflow: hidden; transition: max-height .4s ease, opacity .3s ease;
+      max-height: 4000px; opacity: 1;
+    }
+    .collapse-sec.closed .collapse-body { max-height: 0; opacity: 0; }
+    .collapse-count {
+      font-size: 11px; color: var(--text-muted); font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════════
+       EMAIL IMPORT MODAL
+    ═══════════════════════════════════════ */
+    #email-modal-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(13, 37, 50, 0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: none; align-items: flex-end; justify-content: center;
+      padding: 0;
+    }
+    #email-modal-overlay.open { display: flex }
+
+    #email-modal {
+      background: var(--white);
+      border-radius: 24px 24px 0 0;
+      width: 100%; max-width: 780px;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 0;
+      box-shadow: 0 -8px 40px rgba(0,0,0,.25);
+      transform: translateY(100%);
+      transition: transform .35s cubic-bezier(.32,1,.35,1);
+    }
+    #email-modal-overlay.open #email-modal { transform: translateY(0) }
+
+    .modal-handle {
+      width: 40px; height: 4px; background: var(--border);
+      border-radius: 2px; margin: 14px auto 0;
+    }
+    .modal-header {
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-header h3 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 17px; font-weight: 700; color: var(--text);
+    }
+    .modal-header p { font-size: 12px; color: var(--text-muted); margin-top: 2px }
+    .modal-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #f0ece7; border: none; cursor: pointer;
+      font-size: 16px; display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); flex-shrink: 0
+    }
+
+    .modal-body { padding: 16px 20px }
+
+    /* Type selector tabs */
+    .email-type-tabs {
+      display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap;
+    }
+    .email-type-btn {
+      padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+      border: 1.5px solid var(--border); background: var(--white);
+      cursor: pointer; color: var(--text-muted); transition: all .15s;
+    }
+    .email-type-btn.active {
+      background: var(--ocean); color: #fff; border-color: var(--ocean);
+    }
+
+    .email-textarea {
+      width: 100%; min-height: 180px; padding: 12px 14px;
+      border: 1.5px solid var(--border); border-radius: 14px;
+      font-family: 'Noto Sans TC', sans-serif; font-size: 13px;
+      line-height: 1.7; color: var(--text); background: #fafaf8;
+      resize: vertical; outline: none;
+      transition: border-color .2s;
+    }
+    .email-textarea:focus { border-color: var(--ocean) }
+    .email-textarea::placeholder { color: #bbb }
+
+    .parse-btn {
+      width: 100%; margin-top: 12px; padding: 14px;
+      background: var(--ocean); color: #fff;
+      border: none; border-radius: 14px; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: opacity .2s; font-family: 'Noto Sans TC', sans-serif;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .parse-btn:active { opacity: .8 }
+    .parse-btn:disabled { opacity: .5; cursor: not-allowed }
+
+    /* Spinner */
+    .spinner {
+      width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.4);
+      border-top-color: #fff; border-radius: 50%;
+      animation: spin .7s linear infinite; display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg) } }
+    .parse-btn.loading .spinner { display: block }
+    .parse-btn.loading .btn-text { display: none }
+
+    /* RESULT CARD */
+    #parse-result {
+      margin-top: 16px; display: none;
+    }
+    #parse-result.show { display: block }
+
+    .result-card {
+      background: linear-gradient(135deg, #f0faf5, #e8f4f8);
+      border: 1.5px solid #9dd4c4;
+      border-radius: 16px; padding: 16px;
+    }
+    .result-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+    .result-type-badge {
+      font-size: 11px; font-weight: 600; padding: 4px 10px;
+      border-radius: 10px; background: var(--ocean); color: #fff;
+    }
+    .result-summary { font-size: 13px; font-weight: 500; color: var(--text) }
+    .result-fields { display: flex; flex-direction: column; gap: 8px }
+    .result-field {
+      display: flex; gap: 10px; font-size: 12.5px; align-items: flex-start;
+    }
+    .result-field-key {
+      min-width: 80px; color: var(--text-muted); font-weight: 500; flex-shrink: 0;
+    }
+    .result-field-val { color: var(--text); font-weight: 500 }
+
+    .apply-btn {
+      width: 100%; margin-top: 14px; padding: 12px;
+      background: var(--green); color: #fff;
+      border: none; border-radius: 12px; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: opacity .2s; font-family: 'Noto Sans TC', sans-serif;
+    }
+    .apply-btn:active { opacity: .8 }
+
+    .error-card {
+      background: var(--coral-light); border: 1.5px solid #f0a090;
+      border-radius: 14px; padding: 14px; font-size: 13px; color: #8b3526;
+    }
+
+    /* Updated highlight */
+    .updated-highlight {
+      animation: flash-highlight .8s ease;
+    }
+    @keyframes flash-highlight {
+      0%   { box-shadow: 0 0 0 0 rgba(26, 107, 138, .6) }
+      50%  { box-shadow: 0 0 0 8px rgba(26, 107, 138, .15) }
+      100% { box-shadow: 0 0 0 0 rgba(26, 107, 138, 0) }
+    }
+
+    /* Import history */
+    .import-history-section {
+      max-width: 780px; margin: 16px auto 0; padding: 0 16px;
+    }
+    .import-history-grid {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .import-chip {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 10px 14px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12.5px;
+    }
+    .import-chip-icon { font-size: 18px; flex-shrink: 0 }
+    .import-chip-body { flex: 1; min-width: 0 }
+    .import-chip-title { font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+    .import-chip-sub { font-size: 11px; color: var(--text-muted) }
+    .import-chip-del { background: none; border: none; cursor: pointer; font-size: 16px; color: var(--text-muted); padding: 4px; flex-shrink: 0 }
+  </style>
+</head>
+
+<body>
+
+  <div id="progress-bar"></div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Travel Guide · 2026</div>
+    <h1>沖繩 4 天 3 夜<br>無壓力行程手冊</h1>
+    <div class="hero-sub">5月27日 — 5月30日 ／ 名護北部 × 古宇利島 × 那霸市區</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span>✈</span> AirAsia FD230 · XK7P4R</div>
+      <div class="hero-meta-item"><span>🚗</span> OTS 租車 · OTS1458405</div>
+      <div class="hero-meta-item"><span>✈</span> Peach MM921 · 7GAN9A</div>
+    </div>
+  </div>
+
+  <!-- QUICK LINKS -->
+  <div class="quick-links-row">
+    <div class="section-label" style="margin-bottom:10px;">行前快速連結</div>
+    <div class="qlinks">
+      <a class="qlink qlink-green" href="https://www.vjw.digital.go.jp/main/#/vjwplo001" target="_blank" rel="noopener">
+        <span class="qlink-icon">✅</span> Visit Japan Web
+      </a>
+      <a class="qlink qlink-orange" href="https://maps.google.com/?q=沖縄県" target="_blank" rel="noopener">
+        <span class="qlink-icon">🗺</span> 沖繩地圖
+      </a>
+      <button class="qlink qlink-teal" onclick="openEmailModal()">
+        <span class="qlink-icon">📧</span> 匯入 Email 資料
+      </button>
+    </div>
+  </div>
+
+  <!-- EMAIL IMPORT HISTORY (auto-populated) -->
+  <div class="import-history-section" id="import-history-section" style="display:none">
+    <div class="section-label" style="margin-bottom:10px;">📬 已匯入資料</div>
+    <div class="import-history-grid" id="import-history-list"></div>
+  </div>
+
+  <!-- QR CODES -->
+  <div class="qr-section collapse-sec closed" id="qr-sec">
+    <div class="collapse-hdr" onclick="toggleCollapse('qr-sec')">
+      <div class="collapse-hdr-left">
+        <div class="section-label">重要 QR Code</div>
+        <span class="collapse-count">租車 · 飯店 · eSIM ×2</span>
+      </div>
+      <span class="collapse-chev">▾</span>
+    </div>
+    <div class="collapse-body">
+    <div class="qr-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="qr-slot">
+        <div class="qr-label">🚗 OTS 租車確認單 QR</div>
+        <div id="ots-qr-slot">
+          <img class="qr-img" src="data:image/png;base64,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" alt="OTS 租車 QR Code">
+          <div style="margin-top:8px;font-size:11px;color:#6b6b6b;text-align:center">訂單 OTS1458405</div>
+        </div>
+      </div>
+      <div class="qr-slot">
+        <div class="qr-label">🏨 飯店 Check-in QR</div>
+        <img class="qr-img" src="data:image/png;base64,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" alt="飯店 Check-in QR Code">
+      </div>
+    </div>
+    <div style="height:12px"></div>
+    <div class="qr-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="qr-slot">
+        <div class="qr-label">📶 eSIM 啟用 QR ①（偉翔）</div>
+        <div id="esim-qr-slot">
+          <img class="qr-img" src="data:image/png;base64,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" alt="eSIM QR Code 1">
+          <div style="margin-top:6px;font-size:10px;color:#6b6b6b;text-align:center;font-family:monospace">ICCID: 8981300025414667128</div>
+          <div style="margin-top:4px;font-size:11px;color:#1a6b8a;font-weight:600;text-align:center">KDDI 5G · 4天 12GB</div>
+        </div>
+      </div>
+      <div class="qr-slot">
+        <div class="qr-label">📶 eSIM 啟用 QR ②（子綾）</div>
+        <img class="qr-img" src="data:image/png;base64,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" alt="eSIM QR Code 2">
+        <div style="margin-top:6px;font-size:10px;color:#6b6b6b;text-align:center;font-family:monospace">ICCID: 8981300025414833894</div>
+        <div style="margin-top:4px;font-size:11px;color:#1a6b8a;font-weight:600;text-align:center">KDDI 5G · 4天 12GB</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;background:#e8f4f8;border-radius:12px;padding:10px 14px;font-size:12px;color:#0d4f6e;line-height:1.8">
+      <strong>📶 eSIM 使用注意事項：</strong><br>
+      ・QR Code 僅能掃描<strong>一次</strong>，完成安裝後勿刪除<br>
+      ・啟用時請連穩定 WiFi，避免啟用失敗<br>
+      ・抵達日本<strong>開啟 eSIM</strong> 後才開始計算天數（當天算第一天）<br>
+      ・請保持「數據漫遊」<strong>關閉</strong>，此為日本原生網路非漫遊<br>
+      ・效期至 2026-06-20 ／ 訂單 26KK297380415
+    </div>
+    </div>
+  </div>
+
+  <!-- PACKING LIST -->
+  <div class="pack-section collapse-sec closed" id="pack-sec">
+    <div class="collapse-hdr" onclick="toggleCollapse('pack-sec')">
+      <div class="collapse-hdr-left">
+        <div class="section-label">行李清單</div>
+        <div class="pack-progress" id="pack-prog" style="margin-top:0">0 / 0 完成</div>
+      </div>
+      <span class="collapse-chev">▾</span>
+    </div>
+    <div class="collapse-body">
+    <div class="pack-cats">
+      <div class="pack-cat">
+        <div class="pack-cat-hdr" onclick="this.parentElement.classList.toggle('open');countPack()">
+          <span>📄 證件 &amp; 訂位</span><span class="pack-chev">▾</span>
+        </div>
+        <div class="pack-items">
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>護照（有效期 6 個月以上）</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>台灣駕照 ＋ 國際駕照</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>信用卡（Visa / Mastercard）</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>機票電子票截圖（去 + 回）</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>飯店訂房確認單</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>OTS 租車訂單確認</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>Visit Japan Web 入境申報完成</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>旅遊保險資料</span></label>
+        </div>
+      </div>
+      <div class="pack-cat">
+        <div class="pack-cat-hdr" onclick="this.parentElement.classList.toggle('open');countPack()">
+          <span>📱 電子 &amp; 通訊</span><span class="pack-chev">▾</span>
+        </div>
+        <div class="pack-items">
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>手機 ＋ 手機殼</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>eSIM 安裝並測試通話 / 上網</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>充電線（Type-C / Lightning）</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>充電頭</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>行動電源</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>相機 ＋ 記憶卡 ＋ 備用電池</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>耳機</span></label>
+        </div>
+      </div>
+      <div class="pack-cat">
+        <div class="pack-cat-hdr" onclick="this.parentElement.classList.toggle('open');countPack()">
+          <span>👕 衣物 &amp; 鞋子</span><span class="pack-chev">▾</span>
+        </div>
+        <div class="pack-items">
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>薄外套 / 防風雨夾克（備用）</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>泳衣 / 泳褲</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>日常穿搭 ×3 套</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>拖鞋 / 涼鞋</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>輕便球鞋（神社步行）</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>帽子 ＋ 太陽眼鏡（5月紫外線強）</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>內衣褲 ×4 套</span></label>
+        </div>
+      </div>
+      <div class="pack-cat">
+        <div class="pack-cat-hdr" onclick="this.parentElement.classList.toggle('open');countPack()">
+          <span>💊 藥品 &amp; 衛生</span><span class="pack-chev">▾</span>
+        </div>
+        <div class="pack-items">
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>防曬乳 SPF 50+</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>防蟲噴霧</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>腸胃藥 / 止瀉藥</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>暈車藥 / 暈船藥</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>感冒藥 / 退燒藥</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>OK 繃 ＋ 酒精棉片</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>盥洗用品（備用分裝瓶）</span></label>
+        </div>
+      </div>
+      <div class="pack-cat">
+        <div class="pack-cat-hdr" onclick="this.parentElement.classList.toggle('open');countPack()">
+          <span>💴 金錢 &amp; 雜項</span><span class="pack-chev">▾</span>
+        </div>
+        <div class="pack-items">
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>日圓現金 ¥10,000–15,000 / 人</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>行李箱鎖（TSA）</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>折疊雨傘（5月沖繩多雨）</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>折疊環保袋（買手信用）</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>行李磅秤（回程手信多）</span></label>
+          <label class="pack-item"><input type="checkbox" class="pack-cb" onchange="countPack()"><span>保鮮袋 / 密封袋（海邊備用）</span></label>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- FLIGHTS -->
+  <div class="flight-section">
+    <div class="section-label" style="margin-bottom:10px;">機票資訊</div>
+    <div class="flight-cards">
+      <div class="flight-card" id="flight-go-card">
+        <div class="flight-header go">✈ 去程　<span class="booking-id" id="flight-go-booking">XK7P4R</span></div>
+        <div class="flight-body">
+          <div class="flight-route">
+            <span class="flight-time" id="flight-go-dep">13:30</span>
+            <div class="flight-arrow">
+              <div class="flight-line"></div>
+              <div class="flight-num" id="flight-go-num">AirAsia FD230</div>
+            </div>
+            <span class="flight-time" id="flight-go-arr">15:55</span>
+          </div>
+          <div class="flight-detail" id="flight-go-detail">T1 航廈出發 ／ 那霸機場 OKA 降落</div>
+        </div>
+      </div>
+      <div class="flight-card" id="flight-back-card">
+        <div class="flight-header back">✈ 回程　<span class="booking-id" id="flight-back-booking">7GAN9A / 786KRR</span></div>
+        <div class="flight-body">
+          <div class="flight-route">
+            <span class="flight-time" id="flight-back-dep">08:10</span>
+            <div class="flight-arrow">
+              <div class="flight-line"></div>
+              <div class="flight-num" id="flight-back-num">Peach MM921</div>
+            </div>
+            <span class="flight-time" id="flight-back-arr">08:45</span>
+          </div>
+          <div class="flight-detail" id="flight-back-detail">那霸機場 OKA 出發 ／ 飛行約 35 分鐘</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE WEATHER -->
+  <div class="weather-row">
+    <div class="weather-header-row">
+      <div class="section-label" style="margin-bottom:0;">即時天氣（那霸・Open-Meteo）</div>
+      <div class="weather-updated" id="weather-updated">載入中…</div>
+    </div>
+    <div class="weather-grid">
+      <div class="weather-card" onclick="toggleHourly(0)">
+        <div class="w-date">5/27 週三</div>
+        <div class="w-icon" id="wi-0">⏳</div>
+        <div class="w-temp" id="wt-0">--°C</div>
+        <div class="w-minmax" id="wm-0">↑-- ↓--</div>
+        <span class="w-rain low" id="wr-0">☂ --%</span>
+        <span class="w-chevron" id="wc-0">▾ 小時預報</span>
+      </div>
+      <div class="weather-card" onclick="toggleHourly(1)">
+        <div class="w-date">5/28 週四</div>
+        <div class="w-icon" id="wi-1">⏳</div>
+        <div class="w-temp" id="wt-1">--°C</div>
+        <div class="w-minmax" id="wm-1">↑-- ↓--</div>
+        <span class="w-rain low" id="wr-1">☂ --%</span>
+        <span class="w-chevron" id="wc-1">▾ 小時預報</span>
+      </div>
+      <div class="weather-card" onclick="toggleHourly(2)">
+        <div class="w-date">5/29 週五</div>
+        <div class="w-icon" id="wi-2">⏳</div>
+        <div class="w-temp" id="wt-2">--°C</div>
+        <div class="w-minmax" id="wm-2">↑-- ↓--</div>
+        <span class="w-rain low" id="wr-2">☂ --%</span>
+        <span class="w-chevron" id="wc-2">▾ 小時預報</span>
+      </div>
+      <div class="weather-card" onclick="toggleHourly(3)">
+        <div class="w-date">5/30 週六</div>
+        <div class="w-icon" id="wi-3">⏳</div>
+        <div class="w-temp" id="wt-3">--°C</div>
+        <div class="w-minmax" id="wm-3">↑-- ↓--</div>
+        <span class="w-rain low" id="wr-3">☂ --%</span>
+        <span class="w-chevron" id="wc-3">▾ 小時預報</span>
+      </div>
+    </div>
+    <div id="hourly-0" class="hourly-panel"></div>
+    <div id="hourly-1" class="hourly-panel"></div>
+    <div id="hourly-2" class="hourly-panel"></div>
+    <div id="hourly-3" class="hourly-panel"></div>
+  </div>
+
+  <!-- ===== DAY 1 ===== -->
+  <div class="day-block" id="day1">
+    <div class="day-title-row" onclick="toggleDay(this)">
+      <div class="day-num">DAY<br>1</div>
+      <div class="day-heading">
+        <h2>抵達沖繩 → 前往名護</h2>
+        <div class="day-date">5月27日（週三）</div>
+      </div>
+      <div class="day-weather-inline" id="dw-1">⛅ --°C<br>☂ --%</div>
+      <div class="day-toggle">‹</div>
+    </div>
+    <div class="day-content">
+      <div class="item-card has-image">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">✈️</span></div>
+          <img class="place-photo" data-wiki="那覇空港" alt="那霸機場" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=那覇空港" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">15:55</span><span class="cat-tag cat-sight">入境</span></div>
+          <div class="item-title">那霸機場 OKA 降落</div>
+          <div class="item-body">AirAsia FD230 於 T1 航廈降落。出關、提領行李預留 <strong>30–40 分鐘</strong>，接著在入境大廳找 OTS 接駁指示牌搭免費接駁車（5–10 分鐘）前往豐崎本部取車。</div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>搭 OTS 免費接駁車 → 豐崎本部（約 10 分鐘）</div>
+      <div class="item-card" id="rental-car-card">
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">16:45 – 17:30</span><span class="cat-tag cat-rent">租車辦理</span></div>
+          <div class="item-title" id="rental-title">OTS 豐崎本部 取車</div>
+          <div class="item-body" id="rental-body">
+            <strong>訂單號碼：</strong>OTS1458405 ／ 會員：OTSP0703170<br>
+            <strong>車款：</strong>S 級別 ／ <strong>取車：</strong>2026-05-27 17:30　臨空豐崎營業所（那霸機場）<br>
+            <strong>還車：</strong>2026-05-29 17:00　DFS 營業所（歌町車站）<br>
+            <strong>費用合計：</strong>¥19,030（含免責 + 尊爵安心險 + 異地還車）<br>
+            <strong>駕駛：</strong>LIEN WEI HSIANG／JUAN TZU LING ／ 成人 2 名
+          </div>
+          <div class="tip">🟢 OTS 本部旁邊就有 ENeos 加油站，領車後先加滿再上路最省時。</div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>走沖繩自動車道北上（那霸 IC → 許田 IC）約 60–70 分鐘 · ETC 約 ¥1,200</div>
+      <div class="item-card has-image" id="hotel-day1-card">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">🏖️</span></div>
+          <img class="place-photo" data-commons-file="Kise Okinawa Okinawa-Marriott-Resort-&amp;-Spa-01.jpg" alt="Oriental Hotel Okinawa" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=Oriental+Hotel+Okinawa+Resort+and+Spa" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">19:00</span><span class="cat-tag cat-hotel">入住</span></div>
+          <div class="item-title" id="hotel-title">Oriental Hotel Okinawa Resort &amp; Spa</div>
+          <div class="item-body" id="hotel-body"><span class="rating">★ 4.5</span>（8,500+ 評價）・名護喜瀬海濱・備停車場<br><strong>今晚為一泊二食方案，晚餐由飯店提供。</strong>用餐後盡情使用溫泉 Spa 與度假村設施。</div>
+          <div class="item-meta" id="hotel-meta">
+            <span class="meta-chip">📞 +81 980-51-1000</span>
+            <span class="meta-chip">🌐 okinawa.oriental-hotels.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 2 ===== -->
+  <div class="day-block" id="day2">
+    <div class="day-title-row" onclick="toggleDay(this)">
+      <div class="day-num">DAY<br>2</div>
+      <div class="day-heading">
+        <h2>北部經典遊</h2>
+        <div class="day-date">5月28日（週四）・水族館 × 古宇利島</div>
+      </div>
+      <div class="day-weather-inline" id="dw-2">🌧 --°C<br>☂ --%</div>
+      <div class="day-toggle">‹</div>
+    </div>
+    <div class="day-content">
+      <div class="item-card">
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">09:00 – 10:00</span><span class="cat-tag cat-food">早餐</span></div>
+          <div class="item-title">Oriental Hotel 早餐自助</div>
+          <div class="item-body">飯店早餐評價極高，含沖繩本地料理與西式料理雙選項。<strong>不需急，10 點出發剛好錯過水族館開館瞬間人潮。</strong>今天雨多，水族館室內為主，把雨傘放包包裡備用即可。</div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>飯店 → 水族館，走 449 縣道，約 20–25 分鐘 · 18 km</div>
+      <div class="item-card has-image">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">🐋</span></div>
+          <img class="place-photo" data-wiki="沖縄美ら海水族館" alt="沖繩美麗海水族館" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=沖縄美ら海水族館" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">10:20 – 12:30</span><span class="cat-tag cat-sight">景點</span></div>
+          <div class="item-title">沖繩美麗海水族館</div>
+          <div class="item-body"><span class="rating">★ 4.6</span>（71,000+ 評價）・日本最大鹽水水槽・鯨鯊近距離觀賞<br>主館門票 ¥2,180。海豚表演每天 4 場（免費）。館外儒艮池、海龜水槽、珊瑚池全免費。<strong>停留建議 2 小時。</strong></div>
+          <div class="item-meta">
+            <span class="meta-chip">🕐 08:30–18:30</span>
+            <span class="meta-chip">💴 ¥2,180 成人</span>
+            <span class="meta-chip">📞 +81 980-48-3748</span>
+          </div>
+          <div class="tip">🟢 雨天反而是好時機，室內參觀不受影響，且人潮略少。</div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>水族館 → 名護市區，約 20 分鐘</div>
+      <div class="item-card">
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">12:30 – 13:30</span><span class="cat-tag cat-food">午餐</span></div>
+          <div class="item-title">名護市區・沖繩麵午餐</div>
+          <div class="item-body">水族館附近餐廳選擇少且貴，建議開車回名護市區（20 分鐘）找 <strong>沖繩そば（沖繩麵）</strong> 或排骨飯（ソーキそば）。道地、實惠，一碗約 ¥700–1,000。</div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>名護 → 古宇利島，走縣道 110 → 247，約 30 分鐘 · 25 km</div>
+      <div class="item-card has-image">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">🌊</span></div>
+          <img class="place-photo" data-wiki="古宇利大橋" alt="古宇利大橋" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=古宇利大橋" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">14:00 – 16:30</span><span class="cat-tag cat-sight">景點</span></div>
+          <div class="item-title">古宇利大橋 ＋ 古宇利島</div>
+          <div class="item-body"><span class="rating">★ 4.7</span>・全長 1.9 km 跨海大橋・碧藍海水為沖繩絕景之一<br><strong>建議順序：</strong>跨橋入島 → 島上停車（免費） → 走到橋頭拍照 → 咖啡廳看海 → 吃蝦蝦飯（Shrimp Wagon 約 ¥1,200）。停留約 <strong>2.5 小時</strong>。</div>
+          <div class="tip">🟢 蝦蝦飯攤車在靠橋頭附近，人多時先點餐再去拍照，回來取餐剛好。</div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>古宇利 → 名護飯店，原路回，約 30 分鐘</div>
+      <div class="item-card has-image">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">🍽️</span></div>
+          <img class="place-photo" data-commons-file="Kise Okinawa Okinawa-Marriott-Resort-&amp;-Spa-01.jpg" alt="Oriental Hotel Okinawa" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=Oriental+Hotel+Okinawa+Resort+and+Spa" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">17:30 – 21:00</span><span class="cat-tag cat-hotel">飯店晚餐</span></div>
+          <div class="item-title">Oriental Hotel・一泊二食晚餐 ＋ 度假設施</div>
+          <div class="item-body"><strong>今晚為一泊二食方案，晚餐由飯店提供。</strong>晚餐含自助或涮涮鍋等多種選項，食材品質佳。用餐後可泡溫泉 Spa、享用游泳池，盡情放鬆。</div>
+          <div class="tip">🟢 Spa 溫泉是飯店一大亮點，建議晚餐後預留 1 小時泡湯，明天退房才不留遺憾。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 3 ===== -->
+  <div class="day-block" id="day3">
+    <div class="day-title-row" onclick="toggleDay(this)">
+      <div class="day-num">DAY<br>3</div>
+      <div class="day-heading">
+        <h2>購物南下・移住那霸</h2>
+        <div class="day-date">5月29日（週五）・PARCO CITY × 糸滿 × 神社 × 還車</div>
+      </div>
+      <div class="day-weather-inline" id="dw-3">🌦 --°C<br>☂ --%</div>
+      <div class="day-toggle">‹</div>
+    </div>
+    <div class="day-content">
+      <div class="item-card">
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">08:30 – 09:30</span><span class="cat-tag cat-hotel">退房</span></div>
+          <div class="item-title">飯店早餐 ＋ 退房</div>
+          <div class="item-body">吃完早餐，09:30 前退房出發。行李全部放車上，今天一路南下不回頭。早晨可能有雨，出發時確認雨傘在車上。</div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>沖繩自動車道南下（許田 IC → 浦添 IC），約 70–80 分鐘 · 65 km · ETC 約 ¥1,200</div>
+      <div class="item-card has-image">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">🛍️</span></div>
+          <img class="place-photo" data-wiki="サンエー浦添西海岸 PARCO CITY" alt="PARCO CITY 浦添" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=PARCO+CITY+浦添" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">11:00 – 13:00</span><span class="cat-tag cat-sight">購物 ＋ 午餐</span></div>
+          <div class="item-title">PARCO CITY（浦添市）</div>
+          <div class="item-body"><span class="rating">★ 4.3</span>（6,400+ 評價）・沖繩規模最大的購物商場之一<br>含 <strong>Uniqlo、GU、MUJI、東急 Hands、ABC-Mart、Daiso</strong> 等日系品牌。4F 餐廳選擇豐富。<strong>在此吃午餐，吃飽再南下。停車免費。</strong></div>
+          <div class="item-meta"><span class="meta-chip">🕐 10:00–22:00</span><span class="meta-chip">📞 +81 98-871-1120</span></div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>PARCO CITY → 糸滿魚市場，走 331 號，約 20–25 分鐘 · 18 km</div>
+      <div class="item-card has-image">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">🐟</span></div>
+          <img class="place-photo" data-wiki="糸満漁港" data-commons="Itoman fishing port Okinawa" alt="糸滿漁港" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=糸満漁業協同組合魚センター" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">13:30 – 14:30</span><span class="cat-tag cat-food">海鮮輕食</span></div>
+          <div class="item-title">糸滿漁業協同組合 魚センター</div>
+          <div class="item-body"><span class="rating">★ 4.1</span>（5,900+ 評價）・沖繩最知名海鮮直銷市場<br>可輕食嘗鮮：<strong>現切鮪魚、炸蝦、海膽飯、spam 飯糰</strong>。自選購買、戶外座位區享用。<strong>停車免費、超寬敞。停留約 1 小時。</strong></div>
+          <div class="item-meta"><span class="meta-chip">🕐 平日 09:00–18:00 / 假日 –19:00</span></div>
+          <div class="warn">🔴 生魚片現買現吃，不要放車內超過 30 分鐘，五月氣溫高。</div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>糸滿 → 波上宮 + 護國神社，約 30–35 分鐘 · 20 km（北上）</div>
+      <div class="item-card has-image">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">⛩️</span></div>
+          <img class="place-photo" data-wiki="波上宮" alt="波上宮" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=波上宮" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">15:15 – 16:00</span><span class="cat-tag cat-sight">神社</span></div>
+          <div class="item-title">波上宮 ＋ 沖繩護國神社</div>
+          <div class="item-body"><span class="rating">波上宮 ★ 4.4</span> · <span class="rating">護國神社 ★ 4.4</span><br>兩個神社緊鄰，步行即可互達。波上宮是沖繩第一神社，建在石灰岩崖上俯瞰東海，旁邊有小海灘。</div>
+          <div class="warn">🔴 護國神社 16:00 關門、波上宮 17:00 關門。<strong>務必 15:15 前抵達。</strong></div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>波上宮 → DFS T Galleria，約 10 分鐘 · 5 km・還車前先在附近加滿油</div>
+      <div class="item-card">
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">16:00 – 16:45</span><span class="cat-tag cat-rent">還車</span></div>
+          <div class="item-title">DFS T Galleria・OTS おもろまち還車點</div>
+          <div class="item-body">DFS T Galleria おもろまち店（那覇新都心）地下 OTS 還車據點。<strong>還車前記得加滿油</strong>（波上宮停車前先加，附近有加油站）。還車流程約 15 分鐘。</div>
+          <div class="tip">🟢 還車後無需再顧車，輕裝前往飯店，晚上搭單軌逛國際通超方便。</div>
+        </div>
+      </div>
+      <div class="item-card has-image" id="hotel-naha-card">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">🏨</span></div>
+          <img class="place-photo" data-commons="Naha Asahibashi Okinawa" alt="THE NEST 那霸 周邊" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=THE+NEST+NAHA" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">17:00 – 17:30</span><span class="cat-tag cat-hotel">入住</span></div>
+          <div class="item-title" id="hotel-naha-title">THE NEST 那霸 入住</div>
+          <div class="item-body" id="hotel-naha-body"><span class="rating">★ 4.1</span>（377 評價）・新式設計飯店 · 近旭橋 Yui Rail 站<br>Check-in 後立即做一件事：<strong>請櫃台預約隔天（5/30）早上 06:00 出發的計程車，這是最重要的事。</strong></div>
+          <div class="item-meta" id="hotel-naha-meta">
+            <span class="meta-chip">📞 +81 98-869-8015</span>
+            <span class="meta-chip">🌐 the-nest.jp/naha</span>
+          </div>
+        </div>
+      </div>
+      <div class="item-card has-image">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">🏮</span></div>
+          <img class="place-photo" data-wiki="国際通り" alt="國際通" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=国際通り+那覇" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">19:00 – 21:30</span><span class="cat-tag cat-food">晚餐 ＋ 逛街</span></div>
+          <div class="item-title">國際通・晚餐 ＋ 採購手信</div>
+          <div class="item-body">搭 Yui Rail 至「縣廳前站」或「牧志站」（1–2 站），步行即達國際通。<br>晚餐推薦往後巷的 <strong>第一牧志公設市場</strong>周邊小巷，沖繩家庭料理、燒肉、鮪魚蓋飯 ¥1,500–2,500/人。<br>伴手禮採購：殘波泡盛、ちんすこう（金楚糕）、紅芋塔、海鹽餅乾等。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 4 ===== -->
+  <div class="day-block" id="day4">
+    <div class="day-title-row" onclick="toggleDay(this)">
+      <div class="day-num">DAY<br>4</div>
+      <div class="day-heading">
+        <h2>返程</h2>
+        <div class="day-date">5月30日（週六）・Peach MM921 08:10 起飛</div>
+      </div>
+      <div class="day-weather-inline" id="dw-4">⛅ --°C<br>☂ --%</div>
+      <div class="day-toggle">‹</div>
+    </div>
+    <div class="day-content">
+      <div class="item-card">
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">05:30</span><span class="cat-tag cat-hotel">起床準備</span></div>
+          <div class="item-title">起床・整理行李</div>
+          <div class="item-body">前一晚就把行李整理好，確認護照、登機資料都放好。問清楚飯店 early checkout 手續（或前一晚先辦好）。</div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>飯店計程車（前晚預約好）→ 那霸機場，約 10–15 分鐘 · ¥1,200–1,500</div>
+      <div class="item-card has-image">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">🛂</span></div>
+          <img class="place-photo" data-wiki="那覇空港" alt="那霸機場" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=那覇空港" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">06:15 – 06:45</span><span class="cat-tag cat-rent">辦理登機</span></div>
+          <div class="item-title">那霸機場・Peach チェックイン</div>
+          <div class="item-body">計程車 06:00 出發，<strong>06:15 前到機場</strong>。Peach 為 LCC，建議起飛前 90 分鐘辦理 check-in。建議前一晚先完成線上 check-in。</div>
+          <div class="tip">🟢 Peach 通常使用那霸機場第 1 航廈（國內線）。辦完手續先放行李，輕鬆逛免稅店。</div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>辦完 check-in → 安全檢查前公共區域免稅店（無需過安檢即可進入）</div>
+      <div class="item-card has-image">
+        <div class="map-wrap">
+          <div class="map-bg"><span class="map-bg-icon">🎁</span></div>
+          <img class="place-photo" data-wiki="那覇空港" alt="那霸機場" loading="lazy">
+          <a class="map-overlay-link" href="https://maps.google.com/?q=那覇空港" target="_blank" rel="noopener"><span class="nav-pill">📍 導航前往</span></a>
+        </div>
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">06:45 – 07:30</span><span class="cat-tag cat-food">免稅購物 ＋ 早餐</span></div>
+          <div class="item-title">那霸機場・免稅店 ＋ 最後手信</div>
+          <div class="item-body">那霸機場航廈內有多家沖繩土產店與輕食：<br><strong>購物推薦：</strong>御菓子御殿（紅芋塔）、ちんすこう本舗（金楚糕）、泡盛、雪塩餅乾。<br><strong>早餐推薦：Pork Tamago おにぎり</strong>（豬肉蛋飯糰）在機場 2F，¥500，最後一口沖繩味！</div>
+          <div class="tip">🟢 那霸機場有蘭花裝置藝術，非常具沖繩風情，逛店途中不妨拍幾張留念。</div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-dot"></div>前往安全檢查 → 登機閘口（預留 30 分鐘以上）</div>
+      <div class="item-card">
+        <div class="item-content">
+          <div class="item-top"><span class="time-tag">07:30 – 08:10</span><span class="cat-tag cat-sight">登機</span></div>
+          <div class="item-title">過安檢 → 登機 → Peach MM921 起飛</div>
+          <div class="item-body">07:30 通過安全檢查，到閘口等候。<strong>08:10 起飛 → 08:45 降落</strong>，35 分鐘短程飛行，結束這趟無壓力的沖繩 4 天旅程。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REMINDER -->
+  <div class="reminder-box">
+    <div class="reminder-inner">
+      <h3>📋 出發前必做清單</h3>
+      <div class="reminder-grid">
+        <div class="reminder-item"><strong>Visit Japan Web</strong>入境日本前需完成申報，點上方快速連結確認已登記。</div>
+        <div class="reminder-item"><strong>Day 3 晚上</strong>入住 THE NEST 後立即請櫃台預約 5/30 早上 06:00 計程車，不要忘記</div>
+        <div class="reminder-item"><strong>OTS 租車</strong>確認國際駕照已準備好。ETC 卡租約確認含括。領車先加油。</div>
+        <div class="reminder-item"><strong>Peach 回程</strong>建議提前 24 小時線上 check-in。托運行李需事先加購，機場補購較貴。</div>
+        <div class="reminder-item"><strong>機場免稅購物</strong>5/30 早上 06:45–07:30 有約 45 分鐘逛機場免稅店，最後採購紅芋塔、金楚糕的機會。</div>
+        <div class="reminder-item"><strong>現金準備</strong>蝦蝦飯攤車、神社御守、糸滿魚市場部分攤位為現金消費，建議備妥 ¥5,000–10,000。</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    沖繩 4 天 3 夜・無壓力版行程手冊 ／ 5月27–30日, 2026<br>
+    天氣：Open-Meteo API（那霸） · 地圖：© Google Maps · 評分：Google Maps
+  </footer>
+
+  <!-- QR LIGHTBOX -->
+  <div id="qr-lightbox">
+    <img id="qr-lightbox-img" alt="QR Code 放大">
+    <div id="qr-lightbox-hint">點任意處關閉</div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav id="day-nav">
+    <a class="nav-btn" href="#" onclick="scrollToTop(event)"><span class="nav-icon">🏠</span>總覽</a>
+    <a class="nav-btn" href="#day1" onclick="navClick(event,'day1')"><span class="nav-icon">✈️</span>Day 1</a>
+    <a class="nav-btn" href="#day2" onclick="navClick(event,'day2')"><span class="nav-icon">🐋</span>Day 2</a>
+    <a class="nav-btn" href="#day3" onclick="navClick(event,'day3')"><span class="nav-icon">🛍️</span>Day 3</a>
+    <a class="nav-btn" href="#day4" onclick="navClick(event,'day4')"><span class="nav-icon">🏠</span>Day 4</a>
+  </nav>
+
+  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="返回頂部">↑</button>
+
+  <!-- ═══════════════════════════════════════
+       EMAIL IMPORT MODAL
+  ═══════════════════════════════════════ -->
+  <div id="email-modal-overlay" onclick="handleOverlayClick(event)">
+    <div id="email-modal">
+      <div class="modal-handle"></div>
+      <div class="modal-header">
+        <div>
+          <h3>📧 匯入 Email 資料</h3>
+          <p>將確認信內容貼入，AI 自動解析並更新行程</p>
+        </div>
+        <button class="modal-close" onclick="closeEmailModal()">✕</button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Type selector -->
+        <div class="email-type-tabs">
+          <button class="email-type-btn active" data-type="auto" onclick="setEmailType(this)">🤖 自動判斷</button>
+          <button class="email-type-btn" data-type="flight" onclick="setEmailType(this)">✈️ 機票</button>
+          <button class="email-type-btn" data-type="hotel" onclick="setEmailType(this)">🏨 飯店</button>
+          <button class="email-type-btn" data-type="rental_car" onclick="setEmailType(this)">🚗 租車</button>
+          <button class="email-type-btn" data-type="esim" onclick="setEmailType(this)">📶 eSIM</button>
+        </div>
+
+        <textarea
+          id="email-textarea"
+          class="email-textarea"
+          placeholder="把確認信的全文貼在這裡&#10;&#10;例如：&#10;OTS 租車確認信、機票 e-ticket、飯店 booking confirmation、eSIM 開通信…&#10;&#10;不需要整理格式，直接貼上即可，AI 會自動辨識。"
+        ></textarea>
+
+        <button class="parse-btn" id="parse-btn" onclick="parseEmail()">
+          <div class="spinner" id="parse-spinner"></div>
+          <span class="btn-text">✨ AI 解析並更新行程</span>
+        </button>
+
+        <div id="parse-result"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── COLLAPSIBLE SECTIONS ──
+    function toggleCollapse(id) {
+      document.getElementById(id).classList.toggle('closed');
+    }
+
+    // ── PLACE PHOTOS (multi-source resolver) ──
+    function setPhoto(img, src) {
+      if (!src) return false;
+      img.src = src;
+      img.onload = () => img.classList.add('loaded');
+      return true;
+    }
+    // Tier 2: exact Wikimedia Commons file → imageinfo thumbnail URL (CORS via origin=*)
+    async function fromCommonsFile(file) {
+      const u = 'https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*'
+        + '&titles=' + encodeURIComponent('File:' + file)
+        + '&prop=imageinfo&iiprop=url&iiurlwidth=500';
+      const d = await (await fetch(u)).json();
+      const page = Object.values(d.query.pages)[0];
+      return page && page.imageinfo && page.imageinfo[0]
+        ? (page.imageinfo[0].thumburl || page.imageinfo[0].url) : null;
+    }
+    // Tier 3: JA Wikipedia REST summary lead image
+    async function fromWiki(title) {
+      const d = await (await fetch('https://ja.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(title))).json();
+      return (d.originalimage || d.thumbnail || {}).source || null;
+    }
+    // Tier 4: Wikimedia Commons keyword search → first photo
+    async function fromCommonsSearch(term) {
+      const u = 'https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*'
+        + '&generator=search&gsrnamespace=6&gsrlimit=1'
+        + '&gsrsearch=' + encodeURIComponent('filetype:bitmap ' + term)
+        + '&prop=imageinfo&iiprop=url&iiurlwidth=500';
+      const d = await (await fetch(u)).json();
+      if (!d.query || !d.query.pages) return null;
+      const page = Object.values(d.query.pages)[0];
+      return page && page.imageinfo && page.imageinfo[0]
+        ? (page.imageinfo[0].thumburl || page.imageinfo[0].url) : null;
+    }
+    async function loadPlacePhoto(img) {
+      const ds = img.dataset;
+      try { if (ds.img && setPhoto(img, ds.img)) return; } catch(e){}
+      try { if (ds.commonsFile && setPhoto(img, await fromCommonsFile(ds.commonsFile))) return; } catch(e){}
+      try { if (ds.wiki && setPhoto(img, await fromWiki(ds.wiki))) return; } catch(e){}
+      try { if (ds.commons && setPhoto(img, await fromCommonsSearch(ds.commons))) return; } catch(e){}
+    }
+    const photoObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (!e.isIntersecting) return; loadPlacePhoto(e.target); photoObs.unobserve(e.target); });
+    }, { rootMargin: '400px' });
+    document.querySelectorAll('.place-photo').forEach(el => photoObs.observe(el));
+
+    // ── PACKING LIST ──
+    function countPack() {
+      const all = document.querySelectorAll('.pack-cb');
+      const done = document.querySelectorAll('.pack-cb:checked').length;
+      document.getElementById('pack-prog').textContent = done + ' / ' + all.length + ' 完成';
+    }
+    countPack();
+
+    // ── QR LONG-PRESS LIGHTBOX ──
+    (function() {
+      const lb = document.getElementById('qr-lightbox');
+      const lbImg = document.getElementById('qr-lightbox-img');
+      let lpTimer = null;
+
+      function openLightbox(src) {
+        lbImg.src = src;
+        lb.classList.add('open');
+        if (navigator.vibrate) navigator.vibrate(40);
+      }
+      function closeLightbox() { lb.classList.remove('open'); }
+
+      lb.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+      function attach(el) {
+        // Touch: long press 500ms
+        el.addEventListener('touchstart', () => {
+          lpTimer = setTimeout(() => openLightbox(el.src), 500);
+        }, { passive: true });
+        ['touchend', 'touchmove', 'touchcancel'].forEach(ev =>
+          el.addEventListener(ev, () => clearTimeout(lpTimer), { passive: true })
+        );
+        // Desktop: hold mouse 500ms
+        el.addEventListener('mousedown', () => {
+          lpTimer = setTimeout(() => openLightbox(el.src), 500);
+        });
+        ['mouseup', 'mouseleave'].forEach(ev =>
+          el.addEventListener(ev, () => clearTimeout(lpTimer))
+        );
+        el.setAttribute('title', '長按放大');
+      }
+
+      // Attach to all current .qr-img; also re-attach when new ones are added
+      document.querySelectorAll('.qr-img').forEach(attach);
+      const qrObs = new MutationObserver(muts => {
+        muts.forEach(m => m.addedNodes.forEach(n => {
+          if (n.nodeType === 1) {
+            if (n.classList && n.classList.contains('qr-img')) attach(n);
+            n.querySelectorAll && n.querySelectorAll('.qr-img').forEach(attach);
+          }
+        }));
+      });
+      qrObs.observe(document.body, { childList: true, subtree: true });
+    })();
+
+    // ── WEATHER ──
+    const DATES = ['2026-05-27','2026-05-28','2026-05-29','2026-05-30'];
+    const WDAYS = ['週三','週四','週五','週六'];
+    const WI = { 0:'☀️',1:'🌤',2:'⛅',3:'🌥',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',77:'🌨',80:'🌦',81:'🌦',82:'🌦',85:'🌨',86:'❄️',95:'⛈',96:'⛈',99:'⛈' };
+    function wi(c) { return WI[c] || '⛅'; }
+    function rc(p) { return p < 30 ? 'low' : p < 60 ? 'mid' : 'high'; }
+
+    // Per-day data store: { tmax, tmin, rain, code, hours:[{t,temp,rain,code}] }
+    let wxDays = [null, null, null, null];
+    let openPanel = -1;
+
+    // Build a synthetic hourly curve from daily min/max (used as a fallback so
+    // the hourly panel is never empty even when the API is unreachable)
+    function synthHours(tmin, tmax, rain, code) {
+      const hours = [];
+      for (let h = 0; h < 24; h++) {
+        // warmest ~14:00, coolest ~05:00
+        const frac = (Math.sin((h - 9) / 24 * Math.PI * 2) + 1) / 2;
+        const temp = Math.round(tmin + (tmax - tmin) * frac);
+        const r = Math.max(0, Math.min(100, Math.round(rain + (h >= 13 && h <= 17 ? 12 : -6))));
+        hours.push({ t: String(h).padStart(2,'0') + ':00', temp, rain: r, code });
+      }
+      return hours;
+    }
+
+    function paintDay(i, day) {
+      document.getElementById('wi-' + i).textContent = wi(day.code);
+      document.getElementById('wt-' + i).textContent = day.tmax + '°C';
+      document.getElementById('wm-' + i).textContent = '↑' + day.tmax + '° ↓' + day.tmin + '°';
+      const wr = document.getElementById('wr-' + i);
+      wr.textContent = '☂ ' + day.rain + '%'; wr.className = 'w-rain ' + rc(day.rain);
+      const dw = document.getElementById('dw-' + (i + 1));
+      if (dw) dw.innerHTML = wi(day.code) + ' ' + day.tmax + '°C<br>☂ ' + day.rain + '%';
+    }
+
+    function toggleHourly(idx) {
+      const cards = document.querySelectorAll('.weather-card');
+      const panels = [0,1,2,3].map(i => document.getElementById('hourly-' + i));
+      if (openPanel === idx) {
+        cards[idx].classList.remove('active'); panels[idx].classList.remove('open'); openPanel = -1; return;
+      }
+      if (openPanel >= 0) { cards[openPanel].classList.remove('active'); panels[openPanel].classList.remove('open'); }
+      openPanel = idx; cards[idx].classList.add('active');
+      buildHourly(idx);
+      panels[idx].classList.add('open');
+      setTimeout(() => panels[idx].scrollIntoView({ behavior:'smooth', block:'nearest' }), 120);
+    }
+
+    function buildHourly(idx) {
+      const panel = document.getElementById('hourly-' + idx);
+      const day = wxDays[idx];
+      const dateStr = DATES[idx];
+      if (!day) { panel.innerHTML = '<p style="padding:14px;font-size:12px;color:#999">小時預報載入中…</p>'; return; }
+      const hours = day.hours && day.hours.length ? day.hours : synthHours(day.tmin, day.tmax, day.rain, day.code);
+      const now = new Date();
+      const isToday = now.getFullYear() === +dateStr.slice(0,4) && (now.getMonth()+1) === +dateStr.slice(5,7) && now.getDate() === +dateStr.slice(8,10);
+      let html = `<div class="hourly-day-label">${dateStr.slice(5,7)}/${dateStr.slice(8,10)} ${WDAYS[idx]}・每小時預報</div><div class="hourly-scroll">`;
+      for (let h = 6; h < 24; h++) {
+        const o = hours[h]; if (!o) continue;
+        const isNow = isToday && now.getHours() === h;
+        html += `<div class="hour-item${isNow ? ' is-now' : ''}"><div class="hour-time">${o.t}</div><div class="hour-icon">${wi(o.code)}</div><div class="hour-temp">${o.temp}°</div><div class="hour-rain">☂${o.rain}%</div></div>`;
+      }
+      html += '</div>';
+      panel.innerHTML = html;
+    }
+
+    async function fetchWeather() {
+      // Request 16-day forecast (works regardless of when the page is opened),
+      // then pick out our trip dates. Uses current API field names.
+      const url = 'https://api.open-meteo.com/v1/forecast?latitude=26.21&longitude=127.68'
+        + '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
+        + '&hourly=temperature_2m,precipitation_probability,weather_code'
+        + '&timezone=Asia%2FTokyo&forecast_days=16';
+      let live = false;
+      try {
+        const d = await (await fetch(url)).json();
+        if (d && d.daily && Array.isArray(d.daily.time)) {
+          DATES.forEach((date, i) => {
+            const di = d.daily.time.indexOf(date);
+            if (di < 0) return; // outside forecast window → keep estimate below
+            const day = {
+              tmax: Math.round(d.daily.temperature_2m_max[di]),
+              tmin: Math.round(d.daily.temperature_2m_min[di]),
+              rain: Math.round(d.daily.precipitation_probability_max[di] ?? 0),
+              code: d.daily.weather_code[di] ?? 3,
+              hours: []
+            };
+            // collect that date's hourly rows
+            if (d.hourly && d.hourly.time) {
+              d.hourly.time.forEach((t, hi) => {
+                if (t.startsWith(date)) {
+                  day.hours.push({
+                    t: t.slice(11,16),
+                    temp: Math.round(d.hourly.temperature_2m[hi] ?? 0),
+                    rain: Math.round(d.hourly.precipitation_probability[hi] ?? 0),
+                    code: d.hourly.weather_code[hi] ?? 3
+                  });
+                }
+              });
+            }
+            wxDays[i] = day;
+            paintDay(i, day);
+            live = true;
+          });
+        }
+      } catch (e) { /* fall through to estimates */ }
+
+      // Fill any day we couldn't get live (offline, or beyond forecast window)
+      const EST = [
+        { tmax:29, tmin:25, rain:25, code:2 },
+        { tmax:27, tmin:24, rain:68, code:63 },
+        { tmax:28, tmin:25, rain:56, code:80 },
+        { tmax:27, tmin:24, rain:20, code:2 }
+      ];
+      DATES.forEach((date, i) => {
+        if (!wxDays[i]) {
+          const e = EST[i];
+          wxDays[i] = { ...e, hours: synthHours(e.tmin, e.tmax, e.rain, e.code) };
+          paintDay(i, wxDays[i]);
+        }
+      });
+
+      const now = new Date();
+      document.getElementById('weather-updated').textContent = live
+        ? '更新：' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0')
+        : '離線・顯示預估值';
+
+      if (openPanel >= 0) buildHourly(openPanel);
+    }
+    fetchWeather();
+
+    // ── SCROLL / NAV ──
+    const pb=document.getElementById('progress-bar');
+    window.addEventListener('scroll',()=>{
+      const doc=document.documentElement;
+      pb.style.width=Math.min(doc.scrollTop/(doc.scrollHeight-doc.clientHeight)*100,100)+'%';
+      document.getElementById('back-top').classList.toggle('visible',doc.scrollTop>300);
+      updateNav();
+    },{passive:true});
+    function toggleDay(r){r.closest('.day-block').classList.toggle('collapsed');}
+    function navClick(e,id){e.preventDefault();const b=document.getElementById(id);if(!b)return;b.classList.remove('collapsed');setTimeout(()=>b.scrollIntoView({behavior:'smooth',block:'start'}),50);}
+    function scrollToTop(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});}
+    function updateNav(){
+      const days=['day1','day2','day3','day4'],btns=document.querySelectorAll('.nav-btn');
+      let active=-1;
+      days.forEach((id,i)=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=80)active=i+1;});
+      btns.forEach((b,i)=>b.classList.toggle('active',i===active));
+      if(active===-1)btns[0].classList.add('active');
+    }
+    updateNav();
+
+    // ═══════════════════════════════════════
+    // EMAIL IMPORT FEATURE
+    // ═══════════════════════════════════════
+
+    let selectedEmailType = 'auto';
+    let importHistory = [];
+
+    function setEmailType(btn) {
+      document.querySelectorAll('.email-type-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedEmailType = btn.dataset.type;
+    }
+
+    function openEmailModal() {
+      const overlay = document.getElementById('email-modal-overlay');
+      overlay.style.display = 'flex';
+      requestAnimationFrame(() => overlay.classList.add('open'));
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeEmailModal() {
+      const overlay = document.getElementById('email-modal-overlay');
+      overlay.classList.remove('open');
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 350);
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('email-modal-overlay')) closeEmailModal();
+    }
+
+    async function parseEmail() {
+      const text = document.getElementById('email-textarea').value.trim();
+      if (!text) { alert('請先貼上 Email 內容'); return; }
+
+      const btn = document.getElementById('parse-btn');
+      btn.classList.add('loading');
+      btn.disabled = true;
+      document.getElementById('parse-result').classList.remove('show');
+
+      const typeHint = selectedEmailType !== 'auto'
+        ? `這封 Email 的類型是「${selectedEmailType}」。` : '';
+
+      const systemPrompt = `你是旅遊行程資料提取專家，專門從確認信中提取結構化資訊。
+${typeHint}
+請分析 Email 內容並回傳純 JSON（不含任何 markdown 符號或說明文字）。
+
+JSON 格式如下，根據類型填入對應欄位：
+{
+  "type": "flight | hotel | rental_car | esim | unknown",
+  "summary": "一行摘要（繁體中文，最多 30 字）",
+  "icon": "一個 emoji 代表類型",
+  "data": {
+    // 機票 (flight):
+    // airline, flight_number, booking_id, departure_time, arrival_time,
+    // departure_airport, arrival_airport, date, seat, passenger, direction (去程/回程)
+
+    // 飯店 (hotel):
+    // hotel_name, check_in_date, check_out_date, booking_id,
+    // room_type, address, phone, confirmation_number, guests
+
+    // 租車 (rental_car):
+    // company, booking_id, pickup_location, return_location,
+    // pickup_time, return_time, car_type, confirmation_number, driver
+
+    // eSIM:
+    // provider, data_plan, activation_qr_url, iccid,
+    // validity_days, validity_start, instructions, support_regions
+  }
+}
+
+如果某個欄位在 Email 中找不到，填入 null。
+只輸出 JSON，不要輸出任何其他文字。`;
+
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            system: systemPrompt,
+            messages: [{ role: 'user', content: text }]
+          })
+        });
+
+        const apiData = await res.json();
+        const raw = apiData.content.map(c => c.text || '').join('');
+        const cleaned = raw.replace(/```json|```/g, '').trim();
+        const parsed = JSON.parse(cleaned);
+
+        showParseResult(parsed);
+
+      } catch (err) {
+        document.getElementById('parse-result').innerHTML = `
+          <div class="error-card">
+            ⚠️ 解析失敗：${err.message || '請稍後再試'}<br>
+            <small style="opacity:.7;margin-top:4px;display:block">請確認 Email 內容已正確貼上</small>
+          </div>`;
+        document.getElementById('parse-result').classList.add('show');
+      } finally {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+    }
+
+    let lastParsed = null;
+
+    function showParseResult(parsed) {
+      lastParsed = parsed;
+      const container = document.getElementById('parse-result');
+
+      const typeLabels = { flight:'機票', hotel:'飯店', rental_car:'租車', esim:'eSIM', unknown:'未知' };
+      const d = parsed.data || {};
+
+      // Build fields display
+      const fields = Object.entries(d)
+        .filter(([k, v]) => v !== null && v !== undefined && v !== '')
+        .map(([k, v]) => {
+          const keyMap = {
+            airline:'航空公司', flight_number:'航班號', booking_id:'訂位代碼',
+            departure_time:'出發時間', arrival_time:'抵達時間',
+            departure_airport:'出發機場', arrival_airport:'抵達機場',
+            date:'日期', seat:'座位', passenger:'旅客', direction:'方向',
+            hotel_name:'飯店名稱', check_in_date:'入住日期', check_out_date:'退房日期',
+            room_type:'房型', address:'地址', phone:'電話',
+            confirmation_number:'確認號碼', guests:'入住人數',
+            company:'租車公司', pickup_location:'取車地點', return_location:'還車地點',
+            pickup_time:'取車時間', return_time:'還車時間',
+            car_type:'車型', driver:'駕駛人',
+            provider:'業者', data_plan:'方案', activation_qr_url:'啟用 QR',
+            iccid:'ICCID', validity_days:'有效天數', validity_start:'生效日',
+            instructions:'啟用說明', support_regions:'支援地區'
+          };
+          return `<div class="result-field">
+            <div class="result-field-key">${keyMap[k] || k}</div>
+            <div class="result-field-val">${v}</div>
+          </div>`;
+        }).join('');
+
+      container.innerHTML = `
+        <div class="result-card">
+          <div class="result-header">
+            <span class="result-type-badge">${parsed.icon || '📄'} ${typeLabels[parsed.type] || parsed.type}</span>
+            <span class="result-summary">${parsed.summary || '解析完成'}</span>
+          </div>
+          <div class="result-fields">${fields || '<div style="color:#888;font-size:13px">未能提取到具體欄位，請確認 Email 內容</div>'}</div>
+        </div>
+        <button class="apply-btn" onclick="applyToItinerary()">✅ 套用到行程手冊</button>`;
+      container.classList.add('show');
+    }
+
+    function applyToItinerary() {
+      if (!lastParsed) return;
+      const d = lastParsed.data || {};
+      const type = lastParsed.type;
+
+      if (type === 'flight') {
+        const isReturn = (d.direction || '').includes('回') ||
+          (d.departure_airport || '').toLowerCase().includes('oka') ||
+          (d.flight_number || '').match(/MM|Peach/i);
+
+        if (isReturn) {
+          if (d.booking_id) document.getElementById('flight-back-booking').textContent = d.booking_id;
+          if (d.departure_time) document.getElementById('flight-back-dep').textContent = d.departure_time;
+          if (d.arrival_time) document.getElementById('flight-back-arr').textContent = d.arrival_time;
+          if (d.flight_number || d.airline) document.getElementById('flight-back-num').textContent = `${d.airline||''} ${d.flight_number||''}`.trim();
+          if (d.departure_airport || d.arrival_airport) {
+            document.getElementById('flight-back-detail').textContent =
+              `${d.departure_airport||''}出發 ／ ${d.arrival_airport||''}降落`;
+          }
+          flashHighlight('flight-back-card');
+        } else {
+          if (d.booking_id) document.getElementById('flight-go-booking').textContent = d.booking_id;
+          if (d.departure_time) document.getElementById('flight-go-dep').textContent = d.departure_time;
+          if (d.arrival_time) document.getElementById('flight-go-arr').textContent = d.arrival_time;
+          if (d.flight_number || d.airline) document.getElementById('flight-go-num').textContent = `${d.airline||''} ${d.flight_number||''}`.trim();
+          if (d.departure_airport || d.arrival_airport) {
+            document.getElementById('flight-go-detail').textContent =
+              `${d.departure_airport||''}出發 ／ ${d.arrival_airport||''}降落`;
+          }
+          flashHighlight('flight-go-card');
+        }
+      }
+
+      else if (type === 'hotel') {
+        const isNaha = (d.hotel_name||'').match(/那霸|NEST|nest|naha/i) ||
+                       (d.address||'').match(/那霸|Naha/i);
+        const targetTitle = isNaha ? 'hotel-naha-title' : 'hotel-title';
+        const targetBody  = isNaha ? 'hotel-naha-body'  : 'hotel-body';
+        const targetCard  = isNaha ? 'hotel-naha-card'  : 'hotel-day1-card';
+
+        if (d.hotel_name) document.getElementById(targetTitle).textContent = d.hotel_name;
+
+        let bodyParts = [];
+        if (d.check_in_date) bodyParts.push(`入住：${d.check_in_date}`);
+        if (d.check_out_date) bodyParts.push(`退房：${d.check_out_date}`);
+        if (d.room_type) bodyParts.push(`房型：${d.room_type}`);
+        if (d.confirmation_number) bodyParts.push(`確認號：${d.confirmation_number}`);
+        if (d.guests) bodyParts.push(`人數：${d.guests}`);
+        if (bodyParts.length) {
+          const el = document.getElementById(targetBody);
+          el.innerHTML += '<br><strong style="color:#2a5c42">✅ 已同步確認資訊：</strong> ' + bodyParts.join(' ／ ');
+        }
+
+        let metaParts = [];
+        if (d.phone) metaParts.push(`<span class="meta-chip">📞 ${d.phone}</span>`);
+        if (d.address) metaParts.push(`<span class="meta-chip">📍 ${d.address}</span>`);
+        if (metaParts.length) {
+          const metaEl = document.getElementById(isNaha ? 'hotel-naha-meta' : 'hotel-meta');
+          if (metaEl) metaEl.innerHTML += metaParts.join('');
+        }
+        flashHighlight(targetCard);
+      }
+
+      else if (type === 'rental_car') {
+        let parts = [];
+        if (d.booking_id || d.confirmation_number)
+          parts.push(`訂單號：<strong>${d.booking_id || d.confirmation_number}</strong>`);
+        if (d.car_type) parts.push(`車型：${d.car_type}`);
+        if (d.pickup_time) parts.push(`取車時間：${d.pickup_time}`);
+        if (d.return_time) parts.push(`還車時間：${d.return_time}`);
+        if (d.pickup_location) parts.push(`取車地點：${d.pickup_location}`);
+        if (d.driver) parts.push(`駕駛：${d.driver}`);
+        if (parts.length) {
+          const bodyEl = document.getElementById('rental-body');
+          bodyEl.innerHTML += '<br><strong style="color:#2a5c42">✅ 已同步確認資訊：</strong> ' + parts.join(' ／ ');
+        }
+        flashHighlight('rental-car-card');
+      }
+
+      else if (type === 'esim') {
+        const slot = document.getElementById('esim-qr-slot');
+        let html = '<div style="padding:8px;text-align:left;font-size:12px;line-height:1.8">';
+        if (d.provider) html += `<strong>業者：</strong>${d.provider}<br>`;
+        if (d.data_plan) html += `<strong>方案：</strong>${d.data_plan}<br>`;
+        if (d.iccid) html += `<strong>ICCID：</strong><span style="font-family:monospace;font-size:11px">${d.iccid}</span><br>`;
+        if (d.validity_days) html += `<strong>有效期：</strong>${d.validity_days} 天<br>`;
+        if (d.validity_start) html += `<strong>生效日：</strong>${d.validity_start}<br>`;
+        if (d.support_regions) html += `<strong>支援地區：</strong>${d.support_regions}<br>`;
+        if (d.instructions) html += `<div style="margin-top:6px;padding:6px 10px;background:#e8f4f8;border-radius:8px;font-size:11.5px">${d.instructions}</div>`;
+        html += '</div>';
+        slot.innerHTML = `<div style="border:1.5px solid #9dd4c4;border-radius:12px;overflow:hidden">${html}</div>`;
+        flashHighlight(slot.closest('.qr-slot'));
+      }
+
+      // Add to history
+      addToHistory(lastParsed);
+      closeEmailModal();
+
+      // Show toast
+      showToast(`✅ ${lastParsed.summary || '資料已更新到行程手冊'}`);
+    }
+
+    function flashHighlight(elOrId) {
+      const el = typeof elOrId === 'string' ? document.getElementById(elOrId) : elOrId;
+      if (!el) return;
+      el.classList.remove('updated-highlight');
+      void el.offsetWidth;
+      el.classList.add('updated-highlight');
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function addToHistory(parsed) {
+      importHistory.push({ ...parsed, timestamp: new Date().toLocaleTimeString('zh-TW', { hour:'2-digit', minute:'2-digit' }) });
+      const section = document.getElementById('import-history-section');
+      const list = document.getElementById('import-history-list');
+      section.style.display = 'block';
+      list.innerHTML = importHistory.map((item, i) => `
+        <div class="import-chip">
+          <div class="import-chip-icon">${item.icon || '📄'}</div>
+          <div class="import-chip-body">
+            <div class="import-chip-title">${item.summary || '已匯入'}</div>
+            <div class="import-chip-sub">匯入時間 ${item.timestamp}</div>
+          </div>
+          <button class="import-chip-del" onclick="removeHistory(${i})" title="移除">✕</button>
+        </div>`).join('');
+    }
+
+    function removeHistory(i) {
+      importHistory.splice(i, 1);
+      if (importHistory.length === 0) {
+        document.getElementById('import-history-section').style.display = 'none';
+      }
+      addToHistory.__redraw = true;
+      // Redraw
+      const list = document.getElementById('import-history-list');
+      list.innerHTML = importHistory.map((item, j) => `
+        <div class="import-chip">
+          <div class="import-chip-icon">${item.icon || '📄'}</div>
+          <div class="import-chip-body">
+            <div class="import-chip-title">${item.summary || '已匯入'}</div>
+            <div class="import-chip-sub">匯入時間 ${item.timestamp}</div>
+          </div>
+          <button class="import-chip-del" onclick="removeHistory(${j})" title="移除">✕</button>
+        </div>`).join('');
+    }
+
+    function showToast(msg) {
+      let toast = document.getElementById('toast-msg');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast-msg';
+        toast.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#1a6b8a;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:600;z-index:999;box-shadow:0 4px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .3s;white-space:nowrap;';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => toast.style.opacity = '0', 2800);
+    }
+  </script>
+</body>
+</html>
